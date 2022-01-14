@@ -1,0 +1,81 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size=12>
+        <ion-grid>
+          <h5>Popular People</h5>
+          <ion-row  class="forecast_container">
+            <ion-col *ngFor="let person of persons">
+              <ion-card style="width: 185px; height: 250px;" (click)="onPersonPressed(person)">
+                <img src="{{ 
+                  (person.profilePath === null) 
+                  ? './assets/pictures/person.png' 
+                  : getPoster(person.profilePath) 
+                }}" title="{{ person.name }}"/>
+                <div style="position: absolute; bottom: 0%; background-color: black; width: 100%;">
+                  <p style="text-align: center; color: white; font-weight: 800;">{{ person.name }}</p>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+          <a href="#" style="margin-top:15px; float:right">more . . .</a>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size=8 size-sm=2></ion-col>
+
+      <ion-col size=12 size-sm=8>
+        <h5>Movies (100)</h5>
+        <ion-grid>
+          <ion-row>
+            <ion-col size=12 size-sm=6 size-lg=4 *ngFor="let movie of movies">
+              <ion-card style="height: 100%;" (click)="onMoviePressed(movie)">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <img src="{{ getPoster(movie.posterPath) }}" />
+                    </ion-col>
+                    <ion-col>
+                      <ion-card-header>
+                        <ion-card-subtitle>
+                          
+                        </ion-card-subtitle>
+                        <ion-card-title>{{ movie.title }}</ion-card-title>
+                      </ion-card-header>
+                    
+                      <ion-card-content>
+                        {{ movie.overview | truncate:[75, '...'] }}
+                      </ion-card-content>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+                
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <a href="#" style="margin-top:15px; float:right; margin-right:23px">more . . .</a>
+      </ion-col>
+
+      <ion-col size=8 size-sm=2></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
